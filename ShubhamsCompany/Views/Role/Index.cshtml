@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Role>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles List</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Add">Add New Role</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                S.No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int serialNumber = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @serialNumber
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.RoleID }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RoleID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+            serialNumber++;
+        }
+    </tbody>
+</table>
+
+

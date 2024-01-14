@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Department>
+
+@{
+    ViewData["Title"] = "Departments";
+}
+
+<h1>Department List</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Add">Add New Department</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                S.No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int serialNumber = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @serialNumber
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.DepartmentID }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+            serialNumber++;
+        }
+    </tbody>
+</table>
